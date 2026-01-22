@@ -1,3 +1,4 @@
+
 name: CI
 
 on:
@@ -15,13 +16,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Branch erkennen
-        run:
+        run: |
           echo "Aktueller Branch: ${{ github.ref_name }}"
 
           if [ "${{ github.ref_name }}" = "main" ]; then
-          echo "🚀 Push auf MAIN erkannt – führe Main-spezifische Schritte aus."
-          else echo "🌱 Push auf anderen Branch erkannt: ${{ github.ref_name }}"
-            fi
+            echo "Push auf MAIN erkannt – führe Main-spezifische Schritte aus."
+          else
+            echo "Push auf anderen Branch erkannt: ${{ github.ref_name }}"
+          fi
 
       - name: Build
-run: echo "Baue das Projekt…"
+        run: echo "Baue das Projekt…"
+

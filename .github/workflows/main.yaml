@@ -1,4 +1,4 @@
- name: name: CI
+name: name: CI
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Branch erkennen
-        run: |
+        run:
           echo "Aktueller Branch: ${{ github.ref_name }}"
 
           if [ "${{ github.ref_name }}" = "main" ]; then

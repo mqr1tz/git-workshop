@@ -1,17 +1,28 @@
- name: CI
+ name: name: CI
 
- on:
-   push:
-     branches:
-       - main
+on:
+  push:
+    branches:
+      - main
+      - feature/*
 
- jobs:
-   build:
-     runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-     steps:
-       - name: Get Your Code
-         uses: actions/checkout@v2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-       - name: Say Hello to the World
-         run: echo "Hello, World!"
+      - name: Branch erkennen
+        run: |
+          echo "Aktueller Branch: ${{ github.ref_name }}"
+
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "🚀 Push auf MAIN erkannt – führe Main-spezifische Schritte aus."
+          else
+            echo "🌱 Push auf anderen Branch erkannt: ${{ github.ref_name }}"
+          fi
+
+      - name: Build
+        run: echo "Baue das Projekt…"

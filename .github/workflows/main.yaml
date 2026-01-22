@@ -1,30 +1,20 @@
 
 name: CI
-
+ 
 on:
   push:
     branches:
       - main
-      - feature/*
-
+  schedule:
+    - cron: '20 13 * * *'
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+ 
     steps:
-      - name: Checkout
+      - name: Get Your Code
         uses: actions/checkout@v6
-
-      - name: Branch erkennen
-        run: |
-          echo "Aktueller Branch: ${{ github.ref_name }}"
-
-          if [ "${{ github.ref_name }}" = "main" ]; then
-            echo "Push auf MAIN erkannt – führe Main-spezifische Schritte aus."
-          else
-            echo "Push auf anderen Branch erkannt: ${{ github.ref_name }}"
-          fi
-
-      - name: Build
-        run: echo "Baue das Projekt…"
-
+ 
+      - name: Say Hello to the Worldddd
+        run: echo "Hello, World!"
